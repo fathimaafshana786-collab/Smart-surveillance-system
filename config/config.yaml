@@ -1,0 +1,51 @@
+# ============================================================
+# Central configuration for Smart Surveillance Video Analytics
+# Change values here instead of editing code.
+# ============================================================
+
+video:
+  source: "file"             # options: "webcam", "file", "rtsp"
+  file_path: "data/input/sample.mp4"
+  webcam_index: 0
+  rtsp_url: ""
+  resize_width: 640         # frames are resized to this width before inference
+  resize_height: 360        # matches sample.mp4's 16:9 aspect ratio (was 480, causing squish for 4:3)
+
+model:
+  weights_path: "models/yolov8n.pt"   # nano model - fastest, good for laptops
+  confidence_threshold: 0.4
+  iou_threshold: 0.45
+  classes:                  # which COCO classes we care about (by name)
+    - person
+    - car
+    - motorcycle
+    - bus
+    - truck
+    - bicycle
+
+events:
+  # Restricted zone rectangle. Positioned for sample.mp4 (640x360 frame):
+  # people walk from the background center toward the camera, so the
+  # zone sits in the lower-center area they pass through.
+  roi:
+    x1: 220
+    y1: 180
+    x2: 480
+    y2: 340
+
+  # Virtual line for entry/exit counting - horizontal, crossed as people
+  # walk from far (small, top of frame) to near (large, bottom of frame).
+  line:
+    start: [0, 220]
+    end: [640, 220]
+
+  loitering_seconds: 10          # alert if a track stays this long
+  person_count_threshold: 5      # alert if more people than this are present
+
+output:
+  save_video: false
+  output_dir: "data/output"
+  log_dir: "data/output/logs"
+
+logging:
+  level: "INFO"             # DEBUG, INFO, WARNING, ERROR

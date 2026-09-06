@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Model weights (large files - document how to download instead)
+models/*.pt
+models/*.onnx
+
+# Generated output
+data/output/*
+!data/output/.gitkeep
+
+# OS/editor
+.DS_Store
+.vscode/
