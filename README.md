@@ -18,24 +18,25 @@ This isn't solving a new problem — object detection and tracking are well-esta
 
 ## How it's organized
 
+\`\`\`
 smart-surveillance/
 ├── app/
-│ ├── detection/ -> YOLO wrapper
-│ ├── tracking/ -> ByteTrack wrapper, gives objects persistent IDs
-│ ├── analytics/ -> ROI/line-crossing math + per-track position history
-│ ├── events/ -> the actual rules (zone entry, line crossing, loitering, count)
-│ ├── video/ -> handles file / webcam / RTSP input
-│ └── utils/ -> config loading, logging, performance timing
+│   ├── detection/       -> YOLO wrapper
+│   ├── tracking/        -> ByteTrack wrapper, gives objects persistent IDs
+│   ├── analytics/       -> ROI/line-crossing math + per-track position history
+│   ├── events/          -> the actual rules (zone entry, line crossing, loitering, count)
+│   ├── video/           -> handles file / webcam / RTSP input
+│   └── utils/           -> config loading, logging, performance timing
 ├── config/
-│ └── config.yaml -> everything tunable lives here, not hardcoded in code
+│   └── config.yaml      -> everything tunable lives here, not hardcoded in code
 ├── data/
-│ ├── input/ -> put your video here
-│ └── output/ -> logs + event CSV get written here
-├── tests/ -> pytest tests for the non-model logic
-├── app.py -> plain OpenCV window version
-├── dashboard.py -> Streamlit dashboard (the main way to run this)
+│   ├── input/            -> put your video here
+│   └── output/           -> logs + event CSV get written here
+├── tests/                 -> pytest tests for the non-model logic
+├── app.py                 -> plain OpenCV window version
+├── dashboard.py            -> Streamlit dashboard (the main way to run this)
 └── requirements.txt
-
+\`\`\`
 
 ## Setting it up
 
